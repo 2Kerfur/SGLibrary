@@ -47,8 +47,8 @@ int SGL::SGLWindow::Destroy() {
 int SGL::SGLWindow::Update() {
     XNextEvent(display, &xEvent);
     if (xEvent.type == Expose) {
-        //XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 10, 10);
-        XDrawString(display, window, DefaultGC(display, s), 10, 50, msg, strlen(msg));
+        XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 100, 10);
+        XDrawString(display, window, DefaultGC(display, s), 0, 50, msg, strlen(msg));
     }
     if (xEvent.type == KeyPress) {
         uint32_t KeyCode = xEvent.xkey.keycode;
