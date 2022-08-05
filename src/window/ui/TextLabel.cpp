@@ -43,3 +43,11 @@ void SGL::TextLabel::SetText(char Text[]) {
     std::cout << Text << std::endl;
 }
 
+int32_t SGL::TextLabel::GetXPos() {
+    return Label_x_pos;
+}
+
+int32_t SGL::TextLabel::GetYPos() {
+    return Label_y_pos;
+}
+

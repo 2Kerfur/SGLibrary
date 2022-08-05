@@ -35,7 +35,7 @@ int SGL::SGLWindow::Init() {
 
 
     char label_text_1[] = "Ok";
-    label.Create(label_text_1, 0, 10, display, window, s);
+    label.Create(label_text_1, 20, 30, display, window, s);
 
 
     return 0;
@@ -52,9 +52,35 @@ int SGL::SGLWindow::Update() {
     if (xEvent.type == Expose) {
         //XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 100, 10);
         char label_text_2[] = "Haha haha";
+        //---------
+        //XColor xcolour;
+
+// I guess XParseColor will work here
+        //xcolour.red = 32000; xcolour.green = 65000; xcolour.blue = 32000;
+        //xcolour.flags = DoRed | DoGreen | DoBlue;
+        //Visual *map = DefaultVisual(display, s);
+        //Colormap cmap
+        //XAllocColor(display, cmap, &xcolour);
+
+        //----------------------
+        int text_x = 10;
+        int text_y = 10;
+
+        XSetForeground(display, DefaultGC(display, s), (98, 176, 200));
+        //XSetForeground(display, DefaultGC(display, s), xcolour.pixel);
+        XFillRectangle( display, window, DefaultGC(display, s), text_x + 6, text_y + 8, text_x + 85 ,text_y + 5);
+        //---------
+        //XDrawRectangle(display, window, )
+        XSetForeground(display, DefaultGC(display, s), (0,0,0));
+
+        // box around input field
+        XDrawLine(display, window, DefaultGC(display, s), text_x + 5 , text_y + 7, text_x + 100 ,text_y + 7);
+        XDrawLine(display, window, DefaultGC(display, s), text_x + 5 , text_y + 23, text_x + 100 ,text_y + 23);
+        XDrawLine(display, window, DefaultGC(display, s), text_x + 5 , text_y + 7, text_x + 5 ,text_y + 23);
+        XDrawLine(display, window, DefaultGC(display, s), text_x + 100 , text_y + 7, text_x + 100 ,text_y + 23);
+
         label.SetText(label_text_2);
         label.Draw();
-        //XDrawString(display, window, DefaultGC(display, s), 0, 50, msg, strlen(msg));
     }
 
     if (xEvent.type == KeyPress) {
