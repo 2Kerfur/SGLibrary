@@ -4,6 +4,7 @@
 CMakeFiles/SGLibrary.dir/src/main.cpp.o: ../src/KeyCodes.h
 CMakeFiles/SGLibrary.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/SGLibrary.dir/src/main.cpp.o: ../src/window/Window.h
+CMakeFiles/SGLibrary.dir/src/main.cpp.o: ../src/window/ui/TextLabel.h
 
 CMakeFiles/SGLibrary.dir/src/window/Window.cpp.o: ../src/window/Window.cpp
 CMakeFiles/SGLibrary.dir/src/window/Window.cpp.o: ../src/window/Window.h

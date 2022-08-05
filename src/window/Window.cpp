@@ -31,13 +31,14 @@ int SGL::SGLWindow::Init() {
                                  BlackPixel(display, s), WhitePixel(display, s));
     XSelectInput(display, window, ExposureMask | KeyPressMask);
     XMapWindow(display, window);
+
     TextLabel label;
-    label.Delete();
 
     char *window_name = "hi";
-    label.Create(window_name, 100, 100);
+    label.Create(window_name, 100, 100, display, window, s);
     return 0;
 }
+
 
 int SGL::SGLWindow::Destroy() {
     XCloseDisplay(display);
@@ -47,8 +48,8 @@ int SGL::SGLWindow::Destroy() {
 int SGL::SGLWindow::Update() {
     XNextEvent(display, &xEvent);
     if (xEvent.type == Expose) {
-        XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 100, 10);
-        XDrawString(display, window, DefaultGC(display, s), 0, 50, msg, strlen(msg));
+        //XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 100, 10);
+        //XDrawString(display, window, DefaultGC(display, s), 0, 50, msg, strlen(msg));
     }
     if (xEvent.type == KeyPress) {
         uint32_t KeyCode = xEvent.xkey.keycode;

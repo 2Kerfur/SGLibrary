@@ -1,11 +1,15 @@
 #include <iostream>
 #include "KeyCodes.h"
 #include "window/Window.h"
+#include "window/ui/TextLabel.h"
 
 int main(void) {
     SGL::SGLWindow window;
 
-    std::cout << window.Init() << std::endl;
+
+
+    window.Init();
+
     while (true)
     {
         bool running = window.Update();
