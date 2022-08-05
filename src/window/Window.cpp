@@ -32,10 +32,12 @@ int SGL::SGLWindow::Init() {
     XSelectInput(display, window, ExposureMask | KeyPressMask);
     XMapWindow(display, window);
 
-    TextLabel label;
 
-    char *window_name = "hi";
-    label.Create(window_name, 100, 100, display, window, s);
+
+    char label_text_1[] = "Ok";
+    label.Create(label_text_1, 0, 10, display, window, s);
+
+
     return 0;
 }
 
@@ -49,11 +51,26 @@ int SGL::SGLWindow::Update() {
     XNextEvent(display, &xEvent);
     if (xEvent.type == Expose) {
         //XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 100, 10);
+        char label_text_2[] = "Haha haha";
+        label.SetText(label_text_2);
+        label.Draw();
         //XDrawString(display, window, DefaultGC(display, s), 0, 50, msg, strlen(msg));
     }
+
     if (xEvent.type == KeyPress) {
-        uint32_t KeyCode = xEvent.xkey.keycode;
+        int KeyCode = xEvent.xkey.keycode;
         std::cout << KeyCode << std::endl;
+
+        char label_text_2[50];
+        for (int i = 0; i < 51; i++)
+        {
+            label_text_2[i] = 0;
+        }
+        //label.SetText(label_text_2);
+        //label_text_2[0] = key;
+        label.SetText(label_text_2);
+        label.Draw();
+
         if (KeyCode == 9) {
             std::cout << "Esc pressed" << std::endl;
             return -1;

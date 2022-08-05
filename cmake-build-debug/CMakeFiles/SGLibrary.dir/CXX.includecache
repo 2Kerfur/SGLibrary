@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/src/KeyCodes.h
-
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/src/main.cpp
-iostream
--
-KeyCodes.h
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/src/KeyCodes.h
-window/Window.h
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/Window.h
-window/ui/TextLabel.h
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/ui/TextLabel.h
-
 /home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/Window.cpp
 Window.h
 /home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/Window.h
@@ -37,18 +25,8 @@ ui/TextLabel.h
 /home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/Window.h
 X11/Xlib.h
 -
-
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/ui/TextLabel.cpp
-menu.h
--
-TextLabel.h
+ui/TextLabel.h
 /home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/ui/TextLabel.h
-iostream
--
-cstring
--
-X11/Xlib.h
--
 
 /home/kerfur/DEV/MY_GITHUB/SGLibrary/src/window/ui/TextLabel.h
 X11/Xlib.h

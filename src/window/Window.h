@@ -1,4 +1,5 @@
 #include <X11/Xlib.h>
+#include "ui/TextLabel.h"
 namespace SGL {
     class SGLWindow
     {
@@ -14,6 +15,7 @@ namespace SGL {
         XColor color;
         Colormap colormap;
 
+        TextLabel label;
 
         int s;
         const char *msg = "Hello, World!";
