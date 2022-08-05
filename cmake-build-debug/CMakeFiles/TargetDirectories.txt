@@ -1,3 +1,0 @@
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/cmake-build-debug/CMakeFiles/SGLibrary.dir
-/home/kerfur/DEV/MY_GITHUB/SGLibrary/cmake-build-debug/CMakeFiles/edit_cache.dir

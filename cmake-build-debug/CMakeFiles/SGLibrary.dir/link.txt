@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/SGLibrary.dir/src/main.cpp.o CMakeFiles/SGLibrary.dir/src/window/Window.cpp.o CMakeFiles/SGLibrary.dir/src/window/ui/Button.cpp.o CMakeFiles/SGLibrary.dir/src/window/ui/TextLabel.cpp.o  -o SGLibrary -lX11 
