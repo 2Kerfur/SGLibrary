@@ -6,7 +6,7 @@
 #include "UI.h"
 
 namespace SGL {
-    class TextLabel : public UI {
+    class TextLabel {
     public:
         int32_t Visible(bool show);
         int32_t Create(char Text[], int32_t x_pos, int32_t y_pos, Display *display, Window window, int screen);

@@ -9,7 +9,7 @@
 
 #include "ui/TextLabel.h"
 
-//#include "KeyCodes.h"
+#include "KeyCodes.h"
 
 int SGL::SGLWindow::Init() {
     display = XOpenDisplay(NULL);
@@ -20,11 +20,6 @@ int SGL::SGLWindow::Init() {
 
     s = DefaultScreen(display);
 
-    char green[] = "#00FF00";
-
-    colormap = DefaultColormap(display, 0);
-    XParseColor(display, colormap, green, &color);
-    XAllocColor(display, colormap, &color);
 
 
     window = XCreateSimpleWindow(display, RootWindow(display, s), 10, 10, 100, 100, 1,
@@ -34,8 +29,9 @@ int SGL::SGLWindow::Init() {
 
 
 
-    char label_text_1[] = "Ok";
-    label.Create(label_text_1, 20, 30, display, window, s);
+
+
+
 
 
     return 0;
@@ -49,58 +45,77 @@ int SGL::SGLWindow::Destroy() {
 
 int SGL::SGLWindow::Update() {
     XNextEvent(display, &xEvent);
-    if (xEvent.type == Expose) {
-        //XFillRectangle(display, window, DefaultGC(display, s), 20, 20, 100, 10);
-        char label_text_2[] = "Haha haha";
-        //---------
-        //XColor xcolour;
+    switch (xEvent.type) {
+        case ButtonPress:
+            std::cout << "button pressed" << std::endl;
+            switch (xEvent.xbutton.button) {
+                std::cout << "button pressed" << std::endl;
+                case Button1:
 
-// I guess XParseColor will work here
-        //xcolour.red = 32000; xcolour.green = 65000; xcolour.blue = 32000;
-        //xcolour.flags = DoRed | DoGreen | DoBlue;
-        //Visual *map = DefaultVisual(display, s);
-        //Colormap cmap
-        //XAllocColor(display, cmap, &xcolour);
+                    break;
 
-        //----------------------
-        int text_x = 10;
-        int text_y = 10;
+            }
+        //case Expose:
+            //break;
+        case KeyPress:
+            int KeyCode = xEvent.xkey.keycode;
+            if (KeyCode == KEY_ESC) {
+                std::cout << "Esc pressed" << std::endl;
+                exit(0);
+            }
 
-        XSetForeground(display, DefaultGC(display, s), (98, 176, 200));
-        //XSetForeground(display, DefaultGC(display, s), xcolour.pixel);
-        XFillRectangle( display, window, DefaultGC(display, s), text_x + 6, text_y + 8, text_x + 85 ,text_y + 5);
-        //---------
-        //XDrawRectangle(display, window, )
-        XSetForeground(display, DefaultGC(display, s), (0,0,0));
-
-        // box around input field
-        XDrawLine(display, window, DefaultGC(display, s), text_x + 5 , text_y + 7, text_x + 100 ,text_y + 7);
-        XDrawLine(display, window, DefaultGC(display, s), text_x + 5 , text_y + 23, text_x + 100 ,text_y + 23);
-        XDrawLine(display, window, DefaultGC(display, s), text_x + 5 , text_y + 7, text_x + 5 ,text_y + 23);
-        XDrawLine(display, window, DefaultGC(display, s), text_x + 100 , text_y + 7, text_x + 100 ,text_y + 23);
-
-        label.SetText(label_text_2);
-        label.Draw();
+            return 0;
     }
 
-    if (xEvent.type == KeyPress) {
-        int KeyCode = xEvent.xkey.keycode;
-        std::cout << KeyCode << std::endl;
+    int root_x, root_y;
+    int win_x, win_y;
+    unsigned int mask;
+    Window root_window, child_return;
 
-        char label_text_2[50];
-        for (int i = 0; i < 51; i++)
-        {
-            label_text_2[i] = 0;
-        }
-        //label.SetText(label_text_2);
-        //label_text_2[0] = key;
-        label.SetText(label_text_2);
-        label.Draw();
+    XQueryPointer(display, window, &root_window, &child_return, &root_x, &root_y, &root_x, &root_y, &mask); //<--four
 
-        if (KeyCode == 9) {
-            std::cout << "Esc pressed" << std::endl;
-            return -1;
-        }
+    std::cout << "X = " << root_x << " Y = " << root_y << std::endl;
+    Draw();
+}
+
+void SGL::SGLWindow::Draw() {
+
+    //XSetForeground(display, DefaultGC(display, s), (98, 176, 200));
+    //XFillRectangle(display, window, DefaultGC(display, s), text_x + 6, text_y + 8, text_x + 5, text_y + 5);
+
+    XSetForeground(display, DefaultGC(display, s), (0, 0, 0));
+
+    for (int i = 0; i < Window_labels_count; i++)  // Draw all TextLabels
+    {
+        Window_labels[i].Draw();
     }
+    for (int i = 0; i < Window_buttons_count; i++) // Draw all Buttons
+    {
+        Window_buttons[i].Draw();
+    }
+
+}
+
+int SGL::SGLWindow::AddUI(TextLabel textLabel) {
+    Window_labels[Window_labels_count] = textLabel;
+    Window_labels_count += 1;
     return 0;
+}
+
+int SGL::SGLWindow::AddUI(SGL::Button button) {
+    Window_buttons[Window_buttons_count] = button;
+    Window_buttons_count += 1;
+    return 0;
+}
+
+Window SGL::SGLWindow::GetWindow() {
+    return window;
+}
+
+int SGL::SGLWindow::GetScreen() {
+    return s;
+}
+
+Display *SGL::SGLWindow::GetDisplay() {
+    return display;
 }

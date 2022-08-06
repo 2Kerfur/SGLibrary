@@ -11,7 +11,6 @@ int32_t SGL::TextLabel::Create(char Text[], int32_t x_pos, int32_t y_pos, Displa
     {
         Label_text[i] = Text[i];
     }
-    std::cout << Label_text << std::endl;
     window = _window;
     display = _display;
     screen = _screen;
