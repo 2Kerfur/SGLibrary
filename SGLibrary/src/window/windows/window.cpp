@@ -1,6 +1,6 @@
 ﻿#include "window.h"
 #include <iostream>
-//static const wchar_t CLASS_NAME[20] = L"Sample Window Class";
+
 static const wchar_t CLASS_NAME[] = L"Sample Window Class";
 
 Window* Window::CreateMainWindow(int WindowWidth, int WindowHeight, std::wstring WindowName) {
