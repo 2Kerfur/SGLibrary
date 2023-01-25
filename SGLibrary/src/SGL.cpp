@@ -23,3 +23,8 @@ void SGWindow::DispatchEvents()
 	window.DispatchEvents();
 	SGCloseWindow = window.CloseWindow;
 }
+
+void SGWindow::AddElement(SGElement element)
+{
+	
+}

@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
 #ifdef _WIN32
-#include "windows/window.h"
+#include "windows/button.h"
 #endif
 
 #ifdef __linux__
-#include "linux/window.h"
+#include "linux/button.h"
 #endif
 #include "SGElement.h"
 
@@ -16,10 +16,15 @@ public:
 			int buttonPercentWidth, int buttonPercentHeight,
 			std::string text
 	);
+
 	~SGButton();
-	virtual void Update(int window_width, int window_height) override;
+	//void Update(int window_width, int window_height) override;
 private:
+	Button button;
 	std::string ButtonText = "Default";
+	int WindowWidth = 0;
+	int WindowHeight = 0;
+
 	int ButtonXPercentPos = 0;
 	int ButtonYPercentPos = 0;
 	int ButtonPercentWidth = 5;

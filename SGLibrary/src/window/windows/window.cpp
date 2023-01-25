@@ -1,10 +1,12 @@
 ﻿#include "window.h"
 #include <iostream>
+#define IDC_SELECT_VIDEO (100)
 
 static const wchar_t CLASS_NAME[] = L"Sample Window Class";
-
+HWND SelectVideoBTN;
 Window* Window::CreateMainWindow(int WindowWidth, int WindowHeight, std::wstring WindowName) {
     LPCWSTR sw = WindowName.c_str();
+    
 
     HINSTANCE hInst = GetModuleHandle(nullptr);
     WNDCLASS wincl;
@@ -43,6 +45,20 @@ Window* Window::CreateMainWindow(int WindowWidth, int WindowHeight, std::wstring
         MessageBox(NULL, L"Problem creating the window.", L"Error", 0);
         return 0;
     }
+
+    SelectVideoBTN = CreateWindow(
+        L"BUTTON",  // Predefined class; Unicode assumed 
+        L"Select Video's",      // Button text 
+        WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  // Styles 
+        10,         // x position 
+        20,        // y position 
+        20,        // Button width
+        25,         // Button height
+        hWnd,       // Parent window
+        (HMENU)IDC_SELECT_VIDEO, // Assign appropriate control ID
+        hInst,
+        NULL);      // Pointer not needed.
+   
     //SetWindowLong(hWnd, GWL_STYLE, 1); //remove all window styles, check MSDN for details
     ShowWindow(hWnd, SW_SHOW); //display window
 
@@ -78,8 +94,15 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         Window* window = (Window*)pcs->lpCreateParams;
         window->hWindow = hwnd;
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG)pcs->lpCreateParams);
+
+        
         return TRUE;
     }
+    case WM_COMMAND:
+        if (LOWORD(wParam) == IDC_SELECT_VIDEO) {
+            std::cout << " button was pressed" << std::endl;
+        }
+        break;
     case WM_CLOSE:
 
         DestroyWindow(hwnd);

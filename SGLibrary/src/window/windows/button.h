@@ -1,8 +1,14 @@
 #pragma once
-class button
+#include <iostream>
+#include "window.h"
+class Button
 {
 public:
-	void Update();
-	
+	int Create(int buttonXPercentPos, int buttonYPercentPos,
+		int buttonPercentWidth, int buttonPercentHeight,
+		std::string text, Window* window);
+	void Update(int WindowHeight, int WindowWidth);
+private:
+
 };
 

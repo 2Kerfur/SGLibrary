@@ -8,11 +8,14 @@
 #include "window/linux/window.h"
 #endif
 
+#include "window/SGElement.h"
+
 class SGWindow
 {
 public:
 	SGWindow(int width, int height, std::wstring WindowName);
 	void DispatchEvents();
+	void AddElement(SGElement element);
 	bool SGCloseWindow = false;
 	~SGWindow();
 private:
