@@ -8,18 +8,20 @@
 #include "linux/button.h"
 #endif
 #include "SGElement.h"
-
+#include "SGWindow.h"
 #include <string>
 class SGButton : SGElement
 {
 public:
-	SGButton(int x_percent_pos, int y_percent_pos, int width, int height);
+	SGButton(int x_percent_pos, int y_percent_pos,
+		int width, int height,
+		std::string text, void (*func)(), SGWindow *window);
 
 	void SetPos(int x_percent_pos, int y_percent_pos);
 	void SetSize(int widht, int height);
 	void SetText(std::string text);
-	void Update();
-
+	void Update(int window_width, int window_height);
+	void (*SGButtonCallback)();
 	~SGButton();
 private:
 	Button button;

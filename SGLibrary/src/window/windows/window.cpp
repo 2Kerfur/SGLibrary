@@ -1,5 +1,5 @@
 ﻿#include "window.h"
-#include <iostream>
+#include <Windows.h>
 #define IDC_SELECT_VIDEO (100)
 
 static const wchar_t CLASS_NAME[] = L"Sample Window Class";
@@ -61,9 +61,17 @@ Window* Window::CreateMainWindow(int WindowWidth, int WindowHeight, std::string 
    
     //SetWindowLong(hWnd, GWL_STYLE, 1); //remove all window styles, check MSDN for details
     ShowWindow(hWnd, SW_SHOW); //display window
-
+    
     return window;
 
+}
+
+RECT Window::GetLocalCoordinates(HWND hWnd) const
+{
+    RECT Rect;
+    GetWindowRect(hWnd, &Rect);
+    MapWindowPoints(HWND_DESKTOP, GetParent(hWnd), (LPPOINT)&Rect, 2);
+    return Rect;
 }
 
 void Window::DispatchEvents()
@@ -85,6 +93,30 @@ void Window::DispatchEvents()
     }
 }
 
+void Window::SetSize(int width, int height)
+{
+    //RECT rect = GetLocalCoordinates(hWindow);
+    //std::cout << width << "widht, " << height << " height" << std::endl;
+    RECT rect = { 0, 0, width, height };
+    //
+    //
+    //AdjustWindowRectEx(&rect, WS_MAXIMIZE, FALSE, WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
+
+    //SetWindowPos(hWindow, hWindow, (int)rect.left, (int)rect.top, width, height, NULL);
+}
+
+void Window::SetName(std::string windowName)
+{
+    std::wstring stemp = std::wstring(windowName.begin(), windowName.end());
+    LPCWSTR sw = stemp.c_str();
+    //std::wstring stemp = std::wstring(windowName.begin(), windowName.end());
+    //LPCWSTR sw = stemp.c_str();
+    SetWindowTextW(hWindow, L"Dude");
+    
+}
+RECT clientRect;
+HRGN bgRgn;
+HBRUSH hBrush;
 LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
     switch (uMsg) {
@@ -94,7 +126,7 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         Window* window = (Window*)pcs->lpCreateParams;
         window->hWindow = hwnd;
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG)pcs->lpCreateParams);
-
+        
         
         return TRUE;
     }
@@ -113,19 +145,29 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
         PostQuitMessage(0);
         break;
     }
+    case WM_TIMER: {
+        InvalidateRect(hwnd, NULL, TRUE);
+        break;
+    }
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hwnd, &ps);
-
         // All painting occurs here, between BeginPaint and EndPaint.
-
-        FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
-
+        GetClientRect(hwnd, &clientRect);
+        bgRgn = CreateRectRgnIndirect(&clientRect);
+        hBrush = CreateSolidBrush(RGB(37, 37, 38));
+        FillRgn(hdc, bgRgn, hBrush);
+        
         EndPaint(hwnd, &ps);
         break;
     }
+    case WM_NCPAINT:
+    {
+        //TODO: implement title bar color
+    }
     default:
+        
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
 
     }
