@@ -1,3 +1,4 @@
+#pragma once
 #include <Windows.h>
 #include <iostream>
 #include "button.h"
@@ -5,7 +6,7 @@ class Window {
 public:
     Window() : hWindow(0) {}
     ~Window();
-    static Window* CreateMainWindow(int WindowWidth, int WindowHeight, std::wstring WindowName);
+    static Window* CreateMainWindow(int WindowWidth, int WindowHeight, std::string WindowName);
 
     void DispatchEvents();
     bool CloseWindow = false;

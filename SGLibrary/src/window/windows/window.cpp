@@ -4,10 +4,10 @@
 
 static const wchar_t CLASS_NAME[] = L"Sample Window Class";
 HWND SelectVideoBTN;
-Window* Window::CreateMainWindow(int WindowWidth, int WindowHeight, std::wstring WindowName) {
-    LPCWSTR sw = WindowName.c_str();
+Window* Window::CreateMainWindow(int WindowWidth, int WindowHeight, std::string WindowName) {
+    std::wstring stemp = std::wstring(WindowName.begin(), WindowName.end());
+    LPCWSTR sw = stemp.c_str();
     
-
     HINSTANCE hInst = GetModuleHandle(nullptr);
     WNDCLASS wincl;
     if (!GetClassInfo(hInst, CLASS_NAME, &wincl)) {

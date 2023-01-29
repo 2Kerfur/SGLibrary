@@ -9,16 +9,18 @@
 #endif
 #include "SGElement.h"
 
+#include <string>
 class SGButton : SGElement
 {
 public:
-	SGButton(int buttonXPercentPos, int buttonYPercentPos, 
-			int buttonPercentWidth, int buttonPercentHeight,
-			std::string text
-	);
+	SGButton(int x_percent_pos, int y_percent_pos, int width, int height);
+
+	void SetPos(int x_percent_pos, int y_percent_pos);
+	void SetSize(int widht, int height);
+	void SetText(std::string text);
+	void Update();
 
 	~SGButton();
-	//void Update(int window_width, int window_height) override;
 private:
 	Button button;
 	std::string ButtonText = "Default";
