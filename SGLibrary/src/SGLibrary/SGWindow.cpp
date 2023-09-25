@@ -1,8 +1,5 @@
 #include "SGWindow.h"
 
-//Window window;
-//SGElement windowElements[10]; //TODO: window must dynamically change size of this array
-int counter = 0;
 SGWindow::SGWindow(int width, int height, std::string windowName)
 {
 	windowParameters.Width = width;
@@ -28,8 +25,4 @@ void SGWindow::Update()
 {
 	window.DispatchEvents();
 	WindowClosed = window.CloseWindow;
-	//for (int i = 0; i < counter; i++)
-	//{
-	//	windowElements[i].Update(windowParameters.Width, windowParameters.Height);
-	//}
 }

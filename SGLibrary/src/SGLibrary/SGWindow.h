@@ -5,7 +5,7 @@
 #endif
 
 #ifdef __linux__
-#include "linux/window.h"
+#include "Platform/Windows/LinuxWindow.h"
 #endif
 #include <iostream>
 

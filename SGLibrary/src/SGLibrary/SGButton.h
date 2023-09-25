@@ -23,7 +23,6 @@ public:
 	void (*SGButtonCallback)();
 	~SGButton();
 private:
-	//Button button;
 	std::string ButtonText = "Default";
 	int WindowWidth = 0;
 	int WindowHeight = 0;
