@@ -1,2 +1,1 @@
-#include "window/SGWindow.h"
-#include "window/SGButton.h"
+#include "SGLibrary/SGWindow.h"

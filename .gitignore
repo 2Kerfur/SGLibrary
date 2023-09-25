@@ -5,4 +5,5 @@
 *.hint
 *.vcxproj
 *.user
+cmake-build-release-visual-studio/
 

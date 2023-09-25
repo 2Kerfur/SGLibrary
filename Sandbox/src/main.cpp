@@ -1,4 +1,5 @@
 ﻿#include "SGL.h"
+
 #include <iostream>
 
 void ButtonCallback()
@@ -6,14 +7,15 @@ void ButtonCallback()
     std::cout << "Callback working" << std::endl;
 }
 
-int main(int argc, wchar_t* argv[]) {
-    
+int main() {
+
+
     SGWindow* window = new SGWindow(300, 200, "SGLibraryTest");
-    SGButton* button = new SGButton(10, 10, 10, 10, "Text", *ButtonCallback, window);
-    window->SetWindowName("HI");
+    //SGButton* button = new SGButton(10, 10, 10, 10, "Text", *ButtonCallback, window);
+    //window->SetWindowName("HI");
     //window->SetSize(1000, 1000);
 
-    while (!window->WindowClosed)
+    while(!window->WindowClosed)
     {
         window->Update();
     }

@@ -9,7 +9,7 @@ SGButton::SGButton(int buttonXPercentPos, int buttonYPercentPos,
 	ButtonPercentWidth = buttonPercentWidth;
 	ButtonPercentHeight = buttonPercentHeight;
 	ButtonText = text;
-	window->AddElement(*this);
+	//window->AddElement(*this);
 	
 	SGButtonCallback = callback;
 	//button.Create(buttonXPercentPos, buttonYPercentPos,
@@ -33,7 +33,7 @@ void SGButton::Update(int window_width, int window_height)
 {
 	WindowWidth = window_width;
 	WindowHeight = window_height;
-	button.Update(window_width, window_height);
+	//button.Update(window_width, window_height);
 }
 
 SGButton::~SGButton()

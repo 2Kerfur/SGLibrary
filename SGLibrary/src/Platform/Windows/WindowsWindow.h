@@ -1,19 +1,18 @@
 #pragma once
 #include <Windows.h>
-#include <iostream>
-//#include "button.h"
-class Window {
+#include <string>
+
+class WindowsWindow {
 public:
-    Window() : hWindow(0) {}
-    ~Window();
-    static Window* CreateMainWindow(int WindowWidth, int WindowHeight, std::string WindowName);
+    WindowsWindow() : hWindow(0) {}
+    ~WindowsWindow();
+    static WindowsWindow* CreateMainWindow(int WindowWidth, int WindowHeight, std::string WindowName);
 
     void DispatchEvents();
     void SetSize(int width, int height);
     void SetName(std::string windowName);
-    
-    bool CloseWindow = false;
 
+    bool CloseWindow = false;
 
 private:
     int WindowWidth = 100;
@@ -22,7 +21,7 @@ private:
     HWND hWindow;
     HINSTANCE hInst;
     RECT GetLocalCoordinates(HWND hWnd) const;
-    
+
     static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
     static const char* m_pszClassName;
     BOOL bRet;

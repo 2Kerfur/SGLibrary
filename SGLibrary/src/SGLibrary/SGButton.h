@@ -1,16 +1,15 @@
 #pragma once
 #include <iostream>
 #ifdef _WIN32
-#include "windows/button.h"
+#include "Platform/Windows/WindowsButton.h"
 #endif
 
 #ifdef __linux__
-#include "linux/button.h"
+#include "Platform/Linux/LinuxButton.h"
 #endif
-#include "SGElement.h"
-#include "SGWindow.h"
+#include "SGLibrary/SGWindow.h"
 #include <string>
-class SGButton : SGElement
+class SGButton
 {
 public:
 	SGButton(int x_percent_pos, int y_percent_pos,
@@ -24,7 +23,7 @@ public:
 	void (*SGButtonCallback)();
 	~SGButton();
 private:
-	Button button;
+	//Button button;
 	std::string ButtonText = "Default";
 	int WindowWidth = 0;
 	int WindowHeight = 0;

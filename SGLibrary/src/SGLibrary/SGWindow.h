@@ -1,14 +1,14 @@
 #pragma once
 
 #ifdef _WIN32
-#include "windows/window.h"
+#include "Platform/Windows/WindowsWindow.h"
 #endif
 
 #ifdef __linux__
 #include "linux/window.h"
 #endif
 #include <iostream>
-#include "SGElement.h"
+
 class SGWindow
 {
 public:
@@ -17,7 +17,6 @@ public:
 	void SetWindowName(std::string text);
 	void Update();
 	bool WindowClosed = false;
-	void AddElement(SGElement element);
 private:
 	struct SGWindowParameters
 	{
