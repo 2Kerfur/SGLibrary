@@ -24,7 +24,7 @@ private:
 		int Height;
 		std::string WindowName;
 	};
-
+    WindowsWindow window;
 	SGWindowParameters windowParameters;
 	
 	
