@@ -8,6 +8,9 @@
 #include "Platform/Windows/LinuxWindow.h"
 #endif
 #include <iostream>
+#include <vector>
+
+#include "SGElement.h"
 
 class SGWindow
 {
@@ -17,7 +20,11 @@ public:
 	void SetWindowName(std::string text);
 	void Update();
 	bool WindowClosed = false;
+
+    void AddElement(SGElement *elements);
 private:
+    std::vector<SGElement*> elements;
+
 	struct SGWindowParameters
 	{
 		int Width;

@@ -10,6 +10,11 @@ void ButtonCallback()
 int main() {
 
 
+    SGLabel::SGElementParameters parameters {10, 10, 10, 10};
+
+    SGLabel* label = new SGLabel();
+    //label->Create(parameters);
+
     SGWindow* window = new SGWindow(300, 200, "SGLibraryTest");
     //SGButton* button = new SGButton(10, 10, 10, 10, "Text", *ButtonCallback, window);
     //window->SetWindowName("HI");

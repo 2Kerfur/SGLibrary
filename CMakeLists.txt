@@ -29,7 +29,8 @@ add_executable(${PROJECT_NAME} WIN32
         SGLibrary/src/SGLibrary/SGInputField.h
         SGLibrary/src/SGLibrary/SGWindow.cpp
         SGLibrary/src/SGLibrary/SGWindow.h
-
+        SGLibrary/src/SGLibrary/SGElement.cpp
+        SGLibrary/src/SGLibrary/SGElement.h
 )
 if( MSVC )
         SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
